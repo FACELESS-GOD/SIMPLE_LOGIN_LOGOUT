@@ -15,14 +15,11 @@ const connection  = mysql.createConnection({
 router.post('/', function(req, res, next) {
  console.log();
      var username =  req.body.userName.toString();
-     console.log(username);
+
     var password = crypto.createHash('md5').update(req.body.password).digest('hex').toString() ; 
-    console.log(password);
-   // var email = req.body.email.toString() ;
+
     var query = `SELECT PASS_WORD FROM persons WHERE USERNAME="${username}" `;
-    var query2 = `SELECT PASS_WORD FROM persons WHERE USERNAME = "${username}"`;
-    console.log(query2);
-    console.log(query); 
+    var query2 = `SELECT PASS_WORD FROM persons WHERE USERNAME = "${username}"`; 
     connection.query(query2 , (err, results, fields)=>{
         if(err)
         {
@@ -31,12 +28,6 @@ router.post('/', function(req, res, next) {
         }
         else
         {
-            console.log(results[0].PASS_WORD);
-            console.log(password);
-            console.log(JSON.stringify(results));
-            
-            console.log(fields);
-            
             if(results[0].PASS_WORD===password)
             {res.send("Password is correct");}
             else{

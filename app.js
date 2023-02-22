@@ -6,11 +6,10 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 var multer = require("multer");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+
 var SignupRouter = require('./routes/Signup');
 var loginRouter = require('./routes/loginTest');
-var d = require('./routes/h');
+
 
 var app = express();
 var upload = multer();
@@ -28,8 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
-app.use('/login', d);
-app.use('/users', usersRouter);
+
 app.use('/signupNow' , SignupRouter);
 app.use('/loginTest' , loginRouter);
 
