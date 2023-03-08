@@ -17,8 +17,6 @@ router.post('/', function(req, res, next) {
      var username =  req.body.userName.toString();
 
     var password = crypto.createHash('md5').update(req.body.password).digest('hex').toString() ; 
-
-    var query = `SELECT PASS_WORD FROM persons WHERE USERNAME="${username}" `;
     var query2 = `SELECT PASS_WORD FROM persons WHERE USERNAME = "${username}"`; 
     connection.query(query2 , (err, results, fields)=>{
         if(err)
